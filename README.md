@@ -6,7 +6,7 @@ I like sports, however most of the sports are require two or more people. Someti
 First build server that can store user information<br />
 Second build app in android<br />
 Third add feature to submit pose and take request<br />
-Four add searching feature<br />
+Fourth add searching feature<br />
 
 ## Mentor: NA
 
