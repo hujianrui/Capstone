@@ -68,20 +68,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/linear_Password"
         android:layout_marginTop="64dp"
+        android:gravity="center"
         tools:context=".MainActivity" >
 
         <Button
             android:id="@+id/button_Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="64dp"
             android:text="Login" />
 
         <Button
             android:id="@+id/button_SignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="64dp"
             android:text="Sign Up" />
 
     </LinearLayout>
@@ -90,8 +89,9 @@
         android:id="@+id/linear_ProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear_Button"
-        android:layout_marginTop="32dp"
+        android:layout_below="@id/linear_Password"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         tools:context=".MainActivity" >
 
         <ProgressBar
