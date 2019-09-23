@@ -5,10 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".PoseFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Pose"
-        android:textSize="60sp"/>
+
+    <Button
+        android:id="@+id/button_badminton"
+        android:text="Badminton"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/button_basketball"
+        android:text="Basketball"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/button_badminton"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/button_tennis"
+        android:text="Tennis"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/button_basketball"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"/>
+
+
 
 </RelativeLayout>

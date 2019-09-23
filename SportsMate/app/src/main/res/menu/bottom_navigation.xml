@@ -12,8 +12,13 @@
         android:title="Home" />
 
     <item
-        android:id = "@+id/nav_pose"
-        android:icon="@drawable/ic_pose_black_24dp"
-        android:title="Pose" />
+        android:id = "@+id/nav_ticket"
+        android:icon="@drawable/ic_ticket_black_24dp"
+        android:title="Ticket" />
+
+    <item
+        android:id = "@+id/nav_logout"
+        android:icon="@drawable/ic_logout_black_24dp"
+        android:title="Logout" />
 
 </menu>

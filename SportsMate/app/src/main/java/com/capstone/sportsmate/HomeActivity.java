@@ -1,5 +1,6 @@
 package com.capstone.sportsmate;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -32,19 +33,27 @@ public class HomeActivity extends AppCompatActivity {
             switch (menuItem.getItemId()){
                 case R.id.nav_profile:
                     selectedFragment = new ProfileFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,
+                            selectedFragment).commit();
                     break;
 
                 case R.id.nav_home:
                     selectedFragment = new ListFragment();
-
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,
+                            selectedFragment).commit();
                     break;
 
-                case R.id.nav_pose:
-                    selectedFragment = new PoseFragment();
+                case R.id.nav_ticket:
+                    selectedFragment = new TicketFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,
+                            selectedFragment).commit();
+                    break;
+
+                case R.id.nav_logout:
+                    Intent messageIntent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(messageIntent);
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,
-                    selectedFragment).commit();
             return true;
         }
     };
