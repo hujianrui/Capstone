@@ -1,4 +1,4 @@
-package com.capstone.sportsmate;
+package com.capstone.sportsmate.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.capstone.sportsmate.Fragment.ListFragment;
+import com.capstone.sportsmate.Fragment.ProfileFragment;
+import com.capstone.sportsmate.R;
+import com.capstone.sportsmate.Fragment.TicketFragment;
 
 public class HomeActivity extends AppCompatActivity {
 

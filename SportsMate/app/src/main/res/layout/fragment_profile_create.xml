@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".ProfileCreateFragment">
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    tools:context=".Fragment.ProfileCreateFragment">
 
     <RadioGroup
         android:id="@+id/rg_sex"
@@ -20,28 +21,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gender: "
-            android:inputType="text"
-            android:textSize="24sp" />
+            android:inputType="text" />
 
         <RadioButton
             android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Male"
-            android:textSize="24sp" />
+            android:text="Male" />
 
         <RadioButton
             android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Female"
-            android:textSize="24sp" />
+            android:text="Female" />
     </RadioGroup>
 
     <LinearLayout
-        android:id="@+id/ll_badminton"
+        android:id="@+id/ll_zipCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rg_sex"
@@ -51,21 +49,89 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Zip Code: "
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editText_zipCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_badminton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_zipCode"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Badminton: "
-            android:inputType="text"
-            android:textSize="24sp" />
+            android:inputType="text" />
 
         <Spinner
             android:id="@+id/spinner_badminton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_basketball"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_badminton"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Basketball: "
+            android:inputType="text" />
 
+        <Spinner
+            android:id="@+id/spinner_Basketball"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tennis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_basketball"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tennis: "
+            android:inputType="text" />
+
+        <Spinner
+            android:id="@+id/spinner_tennis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_tennis"
+        android:layout_marginTop="48dp"
+        android:layout_centerHorizontal="true"
+        android:text="Submit" />
 
 </RelativeLayout>
