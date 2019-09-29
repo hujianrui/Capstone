@@ -11,7 +11,6 @@
         android:id="@+id/ll_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="120dp">
 
         <TextView
@@ -33,7 +32,6 @@
         android:id="@+id/ll_zipCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="32dp"
         android:layout_below="@id/ll_gender">
 
@@ -56,7 +54,6 @@
         android:id="@+id/ll_badminton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="32dp"
         android:layout_below="@id/ll_zipCode">
 
@@ -79,7 +76,6 @@
         android:id="@+id/ll_basketball"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="32dp"
         android:layout_below="@id/ll_badminton">
 
@@ -102,7 +98,6 @@
         android:id="@+id/ll_tennis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="32dp"
         android:layout_below="@id/ll_basketball">
 
@@ -120,5 +115,15 @@
             android:inputType="text" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_below="@id/ll_tennis"
+        android:layout_centerHorizontal="true"
+        android:text="Edit" />
+
 
 </RelativeLayout>
