@@ -3,12 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:orientation="vertical"
     tools:context=".Fragment.ListFragment">
 
-    <TextView
+    <ListView
+        android:id="@+id/lv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="List"
-        android:textSize="60sp" />
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp" />
 
 </RelativeLayout>

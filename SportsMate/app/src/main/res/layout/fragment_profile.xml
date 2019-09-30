@@ -8,10 +8,32 @@
     tools:context=".Fragment.ProfileFragment">
 
     <LinearLayout
+        android:id="@+id/ll_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/ll_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/ll_name">
 
         <TextView
             android:layout_width="wrap_content"
