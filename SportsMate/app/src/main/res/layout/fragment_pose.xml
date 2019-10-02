@@ -105,13 +105,13 @@
             android:text="Date: "
             android:inputType="text" />
 
-        <EditText
-            android:id="@+id/editText_date"
+        <TextView
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_weight="1"
-            android:hint="Choose a Date" />
+            android:text="Choose a Date" />
 
     </LinearLayout>
 
@@ -129,13 +129,13 @@
             android:text="Time: "
             android:inputType="text" />
 
-        <EditText
-            android:id="@+id/editText_time"
+        <TextView
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_weight="1"
-            android:hint="Choose a Time" />
+            android:text="Choose a Time" />
 
     </LinearLayout>
 
