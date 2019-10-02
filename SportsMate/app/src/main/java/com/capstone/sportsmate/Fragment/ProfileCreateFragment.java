@@ -112,7 +112,7 @@ public class ProfileCreateFragment extends Fragment {
 
 
 
-        database = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference().child("User");
 
         // Submit Button
         btSubmit = view.findViewById(R.id.button_submit);

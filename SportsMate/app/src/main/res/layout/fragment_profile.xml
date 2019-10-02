@@ -23,7 +23,7 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
+            android:text=""
             android:inputType="text" />
 
     </LinearLayout>
@@ -45,7 +45,7 @@
             android:id="@+id/tv_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
+            android:text=""
             android:inputType="text" />
 
     </LinearLayout>
@@ -67,7 +67,7 @@
             android:id="@+id/tv_zipCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="84102"
+            android:text=""
             android:inputType="text" />
 
     </LinearLayout>
@@ -89,7 +89,7 @@
             android:id="@+id/tv_badminton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beginner"
+            android:text=""
             android:inputType="text" />
 
     </LinearLayout>
@@ -111,7 +111,7 @@
             android:id="@+id/tv_basketball"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beginner"
+            android:text=""
             android:inputType="text" />
 
     </LinearLayout>
@@ -133,7 +133,7 @@
             android:id="@+id/tv_tennis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beginner"
+            android:text=""
             android:inputType="text" />
 
     </LinearLayout>

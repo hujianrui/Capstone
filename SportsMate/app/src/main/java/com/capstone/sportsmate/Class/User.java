@@ -1,9 +1,13 @@
 package com.capstone.sportsmate.Class;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private String id; //key
     private String name, gender, zipCode, badminton, basketball, tennis;
+    private List<Integer> tickets = new ArrayList<>();;
 
 
     public User(){}
@@ -29,6 +33,8 @@ public class User {
     public void setTennis(String tennis){
         this.tennis = tennis;
     }
+    public void addTicket(int ticketID) {this.tickets.add(ticketID); }
+    public void removeTicket(int ticketID) {this.tickets.remove(new Integer(ticketID)); }
 
     public String getUid(){return this.id;}
     public String getName(){return this.name;}
@@ -37,5 +43,6 @@ public class User {
     public String getBadminton(){return this.badminton;}
     public String getBasketball(){return this.basketball;}
     public String getTennis(){return this.tennis;}
+    public List<Integer> getTickets(){return this.tickets;}
 
 }
