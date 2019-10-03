@@ -1,6 +1,7 @@
 package com.capstone.sportsmate.Fragment;
 
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.capstone.sportsmate.R;
+
+import java.util.Calendar;
 
 
 /**
@@ -28,8 +31,9 @@ public class PoseFragment extends Fragment {
     private String sSkillLvl;
     private RadioGroup rgSpots;
     private RadioButton rbSpots;
-    private TextView chooseTime;
+    private TextView chooseTime, chooseDate;
     private TimePickerDialog timePickerDialog;
+    private DatePickerDialog datePickerDialog;
 
     public PoseFragment() {
         // Required empty public constructor
@@ -70,6 +74,23 @@ public class PoseFragment extends Fragment {
         });
 
         // Date
+        chooseDate = view.findViewById(R.id.tv_date);
+        chooseDate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int mouth = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        chooseDate.setText(month + "/" + dayOfMonth + "/" + year);
+                    }
+                }, year, mouth, day);
+                datePickerDialog.show();
+            }
+        });
 
 
         // Time
@@ -77,12 +98,15 @@ public class PoseFragment extends Fragment {
         chooseTime.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                Calendar cal = Calendar.getInstance();
+                int hour = cal.get(Calendar.HOUR_OF_DAY);
+                int minute = cal.get(Calendar.MINUTE);
                 timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         chooseTime.setText(hourOfDay + ":" + minute);
                     }
-                },0,0,false);
+                }, hour, minute,false);
                 timePickerDialog.show();
             }
         });
