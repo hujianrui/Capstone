@@ -131,7 +131,7 @@ public class ProfileCreateFragment extends Fragment {
         return view;
     }
 
-    public void updateUserProfile(){
+    private void updateUserProfile(){
 
         if(!sName.matches("")){
             userProfile.setName(sName);

@@ -3,6 +3,7 @@ package com.capstone.sportsmate.Fragment;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,8 +19,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.capstone.sportsmate.Activity.HomeActivity;
 import com.capstone.sportsmate.R;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 
@@ -34,6 +38,7 @@ public class PoseFragment extends Fragment {
     private TextView chooseTime, chooseDate;
     private TimePickerDialog timePickerDialog;
     private DatePickerDialog datePickerDialog;
+    private Button btSubmit;
 
     public PoseFragment() {
         // Required empty public constructor
@@ -85,7 +90,12 @@ public class PoseFragment extends Fragment {
                 datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        chooseDate.setText(month + "/" + dayOfMonth + "/" + year);
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.YEAR, year);
+                        cal.set(Calendar.MONTH, month);
+                        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        String sDate = DateFormat.getDateInstance(DateFormat.FULL).format(cal.getTime());
+                        chooseDate.setText(sDate);
                     }
                 }, year, mouth, day);
                 datePickerDialog.show();
@@ -111,8 +121,25 @@ public class PoseFragment extends Fragment {
             }
         });
 
+        // Submit Button
+        btSubmit = view.findViewById(R.id.button_submit);
+        btSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TO DO
+                updateTicket();
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
+    }
+
+    private void updateTicket(){
+
+
+
     }
 
 }
