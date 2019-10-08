@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -20,7 +21,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.capstone.sportsmate.Activity.HomeActivity;
+import com.capstone.sportsmate.Class.Ticket;
+import com.capstone.sportsmate.Class.User;
 import com.capstone.sportsmate.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -31,14 +38,18 @@ import java.util.Calendar;
  */
 public class PoseFragment extends Fragment {
 
+    private EditText etZipCode;
     private Spinner srSkillLvl;
-    private String sSkillLvl;
     private RadioGroup rgSpots;
     private RadioButton rbSpots;
     private TextView chooseTime, chooseDate;
     private TimePickerDialog timePickerDialog;
     private DatePickerDialog datePickerDialog;
     private Button btSubmit;
+    private Ticket ticket = new Ticket();
+    private String sTid; //key
+    private String sSports, sLevel, sZipCode, sDate, sTime;
+    private DatabaseReference database;
 
     public PoseFragment() {
         // Required empty public constructor
@@ -50,6 +61,7 @@ public class PoseFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_pose, container, false);
+        etZipCode = view.findViewById(R.id.editText_zipCode);
 
         // Spots Radio Group
         rgSpots = (RadioGroup) view.findViewById(R.id.rg_sports);
@@ -69,7 +81,7 @@ public class PoseFragment extends Fragment {
         srSkillLvl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sSkillLvl = parent.getItemAtPosition(position).toString();
+                sLevel = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -121,12 +133,28 @@ public class PoseFragment extends Fragment {
             }
         });
 
+        database = FirebaseDatabase.getInstance().getReference().child("Ticket");
+
         // Submit Button
         btSubmit = view.findViewById(R.id.button_submit);
         btSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TO DO
+
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int mouth = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                int hour = cal.get(Calendar.HOUR_OF_DAY);
+                int minute = cal.get(Calendar.MINUTE);
+                int second = cal.get(Calendar.SECOND);
+                int millisecond = cal.get(Calendar.MILLISECOND);
+
+                sTid = "" + year + mouth + day + hour + minute + second + millisecond;
+                sSports = rbSpots.getText().toString();
+                sZipCode = etZipCode.getText().toString();
+                sDate = chooseDate.getText().toString();
+                sTime  = chooseTime.getText().toString();
                 updateTicket();
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
                 startActivity(intent);
@@ -138,8 +166,28 @@ public class PoseFragment extends Fragment {
 
     private void updateTicket(){
 
+        if(!sSports.matches("")){
+            ticket.setSports(sSports);
+        }
 
+        if(!sLevel.matches("")){
+            ticket.setLevel(sLevel);
+        }
 
+        if(!sZipCode.matches("")){
+            ticket.setZipCode(sZipCode);
+        }
+
+        if(!sDate.matches("")){
+            ticket.setDate(sDate);
+        }
+
+        if(!sTime.matches("")){
+            ticket.setTime(sTime);
+        }
+
+        ticket.setTid(sTid);
+        database.child(sTid).setValue(ticket);
     }
 
 }
