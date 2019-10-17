@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +27,16 @@ import com.capstone.sportsmate.Class.User;
 import com.capstone.sportsmate.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 /**
@@ -47,9 +53,11 @@ public class PoseFragment extends Fragment {
     private DatePickerDialog datePickerDialog;
     private Button btSubmit;
     private Ticket ticket = new Ticket();
+    private String userId;
     private String sTid; //key
     private String sSports, sLevel, sZipCode, sDate, sTime;
     private DatabaseReference database;
+    private List<String> tickets;
 
     public PoseFragment() {
         // Required empty public constructor
@@ -133,7 +141,22 @@ public class PoseFragment extends Fragment {
             }
         });
 
-        database = FirebaseDatabase.getInstance().getReference().child("Ticket");
+        database = FirebaseDatabase.getInstance().getReference();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        //get user
+        ValueEventListener mListener = new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tickets = dataSnapshot.child(userId).getValue(User.class).getTickets();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        };
+        database.child("User").addValueEventListener(mListener);
 
         // Submit Button
         btSubmit = view.findViewById(R.id.button_submit);
@@ -150,7 +173,7 @@ public class PoseFragment extends Fragment {
                 int second = cal.get(Calendar.SECOND);
                 int millisecond = cal.get(Calendar.MILLISECOND);
 
-                sTid = "" + year + mouth + day + hour + minute + second + millisecond;
+                sTid = "" + year + mouth + day + hour + minute + second + millisecond + userId;
                 sSports = rbSpots.getText().toString();
                 sZipCode = etZipCode.getText().toString();
                 sDate = chooseDate.getText().toString();
@@ -186,8 +209,11 @@ public class PoseFragment extends Fragment {
             ticket.setTime(sTime);
         }
 
+        tickets.add(sTid);
+        database.child("User").child(userId).child("userID").setValue(tickets);
+
         ticket.setTid(sTid);
-        database.child(sTid).setValue(ticket);
+        database.child("Ticket").child(sTid).setValue(ticket);
     }
 
 }
