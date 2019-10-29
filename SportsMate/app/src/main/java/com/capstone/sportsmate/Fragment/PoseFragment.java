@@ -148,8 +148,7 @@ public class PoseFragment extends Fragment {
         ValueEventListener mListener = new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                tickets = dataSnapshot.child(userId).getValue(User.class).getTickets();
-
+                tickets = dataSnapshot.child(userId).getValue(User.class).getTicketID();
             }
 
             @Override
@@ -209,8 +208,10 @@ public class PoseFragment extends Fragment {
             ticket.setTime(sTime);
         }
 
+        ticket.addUser(userId);
+
         tickets.add(sTid);
-        database.child("User").child(userId).child("userID").setValue(tickets);
+        database.child("User").child(userId).child("ticketID").setValue(tickets);
 
         ticket.setTid(sTid);
         database.child("Ticket").child(sTid).setValue(ticket);

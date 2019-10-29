@@ -41,6 +41,6 @@ public class User {
     public String getBadminton(){return this.badminton;}
     public String getBasketball(){return this.basketball;}
     public String getTennis(){return this.tennis;}
-    public List<String> getTickets(){return this.ticketID;}
+    public List<String> getTicketID(){return this.ticketID;}
 
 }

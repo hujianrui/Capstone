@@ -37,12 +37,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.time.setText(tickets.get(i).getTime());
         viewHolder.skilllvl.setText(tickets.get(i).getLevel());
 
-        viewHolder.ticket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("Recycle View", "onClick: " + tickets.get(i).getTid());
-            }
-        });
+//        viewHolder.ticket.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e("Recycle View", "onClick: " + tickets.get(i).getTid());
+//            }
+//        });
     }
 
     @Override
