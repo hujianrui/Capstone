@@ -36,6 +36,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.date.setText(tickets.get(i).getDate());
         viewHolder.time.setText(tickets.get(i).getTime());
         viewHolder.skilllvl.setText(tickets.get(i).getLevel());
+        int num = tickets.get(i).getUserID().size();
+        viewHolder.pplnum.setText(String.valueOf(num));
+        String sport = tickets.get(i).getSports();
+        if(sport.matches("Badminton")){
+            viewHolder.image.setImageResource(R.drawable.badminton);
+        }else if (sport.matches("Basketball")){
+            viewHolder.image.setImageResource(R.drawable.basketball);
+        }else if (sport.matches("Tennis")){
+            viewHolder.image.setImageResource(R.drawable.tennis);
+        }
 
 //        viewHolder.ticket.setOnClickListener(new View.OnClickListener() {
 //            @Override
