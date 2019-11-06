@@ -36,7 +36,7 @@ public class TicketFragment extends Fragment {
 
     private Button btPose;
     private ArrayList<Ticket> tickets = new ArrayList<>();
-    DatabaseReference database;
+    private DatabaseReference database;
     private List<String> sTickets;
     private String userId;
 
