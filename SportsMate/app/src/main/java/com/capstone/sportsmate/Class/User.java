@@ -7,7 +7,7 @@ public class User {
 
     private String id; //key
     private String name, gender, zipCode, badminton, basketball, tennis;
-    private List<String> ticketID = new ArrayList<>();;
+    private List<String> ticketID = new ArrayList<>();
 
 
     public User(){}

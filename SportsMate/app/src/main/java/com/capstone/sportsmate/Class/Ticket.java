@@ -7,7 +7,7 @@ public class Ticket {
 
     private String id; //key
     private String sports, level, zipCode, date, time;
-    private List<String> userID = new ArrayList<>();;
+    private List<String> userID = new ArrayList<>();
 
     public Ticket(){}
 
