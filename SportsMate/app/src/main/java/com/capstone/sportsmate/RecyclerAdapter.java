@@ -1,11 +1,14 @@
 package com.capstone.sportsmate;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,6 +21,13 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
 
     private ArrayList<Ticket> tickets = new ArrayList<>();
+    private static View selectedView;
+    public String selectedTid;
+
+
+    public static void resetSelectedView() {
+        selectedView = null;
+    }
 
     public RecyclerAdapter(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
@@ -32,7 +42,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         viewHolder.date.setText(tickets.get(i).getDate());
         viewHolder.time.setText(tickets.get(i).getTime());
         viewHolder.skilllvl.setText(tickets.get(i).getLevel());
@@ -47,12 +57,30 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             viewHolder.image.setImageResource(R.drawable.tennis);
         }
 
-//        viewHolder.ticket.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.e("Recycle View", "onClick: " + tickets.get(i).getTid());
-//            }
-//        });
+        viewHolder.ticket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedView != null && selectedView != v){
+                    selectedView.setBackgroundColor(Color.WHITE);
+                    v.setBackgroundColor(Color.GRAY);
+                    selectedTid = tickets.get(i).getTid();
+                    selectedView = v;
+//                    Toast.makeText(v.getContext(), "onClick: " + tickets.get(i).getTid(), Toast.LENGTH_LONG).show();
+                }else if(selectedView == null){
+                    v.setBackgroundColor(Color.GRAY);
+                    selectedTid = tickets.get(i).getTid();
+                    selectedView = v;
+//                    Toast.makeText(v.getContext(), "onClick: " + tickets.get(i).getTid(), Toast.LENGTH_LONG).show();
+                }else {
+                    v.setBackgroundColor(Color.WHITE);
+                    selectedView = null;
+                    selectedTid = null;
+//                    Toast.makeText(v.getContext(), "Clear Info", Toast.LENGTH_LONG).show();
+                }
+//                Toast.makeText(v.getContext(), "onClick: " + tickets.get(i).getTid(), Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
     @Override
@@ -74,8 +102,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             time = itemView.findViewById(R.id.tv_time);
             skilllvl = itemView.findViewById(R.id.tv_skilllvl);
             pplnum = itemView.findViewById(R.id.tv_pplnum);
-            ticket = itemView.findViewById(R.id.rv_ticket);
+            ticket = itemView.findViewById(R.id.rl_ticket);
         }
+
     }
 
 }

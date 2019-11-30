@@ -1,6 +1,7 @@
 package com.capstone.sportsmate.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.capstone.sportsmate.Activity.HomeActivity;
 import com.capstone.sportsmate.Class.Ticket;
 import com.capstone.sportsmate.Class.User;
 import com.capstone.sportsmate.R;
@@ -34,6 +40,7 @@ public class ListFragment extends Fragment {
 
     private DatabaseReference database;
     private ArrayList<Ticket> tickets = new ArrayList<>();
+    private Button btPick;
 
     public ListFragment() {
         // Required empty public constructor
@@ -69,6 +76,21 @@ public class ListFragment extends Fragment {
             }
         };
         database.addValueEventListener(mListener);
+
+
+        // Pick Button
+        btPick = view.findViewById(R.id.button_pick);
+        btPick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(v.getContext(), "Joined the Game", Toast.LENGTH_LONG).show();
+                //updateTicket();
+                RecyclerAdapter.resetSelectedView();
+            }
+        });
+
+
 
         return view;
     }
