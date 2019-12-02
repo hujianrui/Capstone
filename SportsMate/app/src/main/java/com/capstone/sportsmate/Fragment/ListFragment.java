@@ -40,7 +40,12 @@ public class ListFragment extends Fragment {
 
     private DatabaseReference database;
     private ArrayList<Ticket> tickets = new ArrayList<>();
+    private RecyclerAdapter adapter;
     private Button btPick;
+    private String userId;
+    private String sTid; //key
+    private Ticket ticket;
+    private User user;
 
     public ListFragment() {
         // Required empty public constructor
@@ -53,8 +58,8 @@ public class ListFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        database = FirebaseDatabase.getInstance().getReference().child("Ticket");
-        //userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        database = FirebaseDatabase.getInstance().getReference();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //get user
         ValueEventListener mListener = new ValueEventListener(){
@@ -66,7 +71,7 @@ public class ListFragment extends Fragment {
                 }
 
                 RecyclerView recyclerView = view.findViewById(R.id.rv_list);
-                RecyclerAdapter adapter = new RecyclerAdapter(tickets);
+                adapter = new RecyclerAdapter(tickets);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             }
@@ -75,24 +80,59 @@ public class ListFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError){
             }
         };
-        database.addValueEventListener(mListener);
-
-
+        database.child("Ticket").addValueEventListener(mListener);
+        
         // Pick Button
         btPick = view.findViewById(R.id.button_pick);
         btPick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(v.getContext(), "Joined the Game", Toast.LENGTH_LONG).show();
-                //updateTicket();
-                RecyclerAdapter.resetSelectedView();
+                sTid = adapter.getSelectedTid();
+                if(sTid != null){
+                    updateUser();
+                    updateTicket();
+                    adapter.resetSelectedView();
+                    Toast.makeText(v.getContext(), "Joined the Game", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(v.getContext(), "Please Select a Ticket", Toast.LENGTH_LONG).show();
+                }
             }
         });
-
-
-
         return view;
+    }
+
+    private void updateUser(){
+        // get user
+        ValueEventListener mListener = new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                user = dataSnapshot.child(userId).getValue(User.class);
+                user.addTicket(sTid);
+                database.child("User").child(userId).setValue(user);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        };
+        database.child("User").addListenerForSingleValueEvent(mListener);
+    }
+
+    private void updateTicket(){
+        //get ticket
+        ValueEventListener mListener = new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ticket = dataSnapshot.child(sTid).getValue(Ticket.class);
+                ticket.addUser(userId);
+                database.child("Ticket").child(sTid).setValue(ticket);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        };
+        database.child("Ticket").addListenerForSingleValueEvent(mListener);
     }
 
 }

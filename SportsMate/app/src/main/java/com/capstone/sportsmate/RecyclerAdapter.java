@@ -21,13 +21,15 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
 
     private ArrayList<Ticket> tickets = new ArrayList<>();
-    private static View selectedView;
-    public String selectedTid;
+    private View selectedView;
+    private String selectedTid;
 
 
-    public static void resetSelectedView() {
-        selectedView = null;
+    public void resetSelectedView() {
+        this.selectedView = null;
     }
+
+    public String getSelectedTid() { return selectedTid; }
 
     public RecyclerAdapter(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
