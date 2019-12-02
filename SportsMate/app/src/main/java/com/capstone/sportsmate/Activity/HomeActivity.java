@@ -12,6 +12,7 @@ import com.capstone.sportsmate.Fragment.ListFragment;
 import com.capstone.sportsmate.Fragment.ProfileFragment;
 import com.capstone.sportsmate.R;
 import com.capstone.sportsmate.Fragment.TicketFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -55,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
                     break;
 
                 case R.id.nav_logout:
+                    FirebaseAuth.getInstance().signOut();
                     Intent messageIntent = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(messageIntent);
                     break;

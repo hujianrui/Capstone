@@ -17,8 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegisterActivity extends AppCompatActivity
-        implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword, etConfirmPassword;
     private Button btRegister;
@@ -37,7 +36,12 @@ public class RegisterActivity extends AppCompatActivity
         progressBar = findViewById(R.id.progressBar_Register);
 
         mAuth = FirebaseAuth.getInstance();
-        btRegister.setOnClickListener(this);
+        btRegister.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                registerNewUser();
+            }
+        });
     }
 
     private void registerNewUser() {
@@ -50,14 +54,17 @@ public class RegisterActivity extends AppCompatActivity
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
             return;
         }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
             return;
         }
         if (!password.equals(confirmPassword)) {
             Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.GONE);
             etConfirmPassword.setText("");
             return;
         }
@@ -80,8 +87,4 @@ public class RegisterActivity extends AppCompatActivity
                 });
     }
 
-    @Override
-    public void onClick(View v) {
-        registerNewUser();
-    }
 }
