@@ -28,7 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -61,13 +63,26 @@ public class ListFragment extends Fragment {
         database = FirebaseDatabase.getInstance().getReference();
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        Calendar cal = Calendar.getInstance();
+        final int curYear = cal.get(Calendar.YEAR);
+        final int curMonth = cal.get(Calendar.MONTH);
+        final int curDay = cal.get(Calendar.DAY_OF_MONTH);
+        int curHour = cal.get(Calendar.HOUR_OF_DAY);
+        int curMinute = cal.get(Calendar.MINUTE);
+        final String sCurTime = curHour + ":" + curMinute;
+
         //get user
         ValueEventListener mListener = new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     Ticket post = postSnapshot.getValue(Ticket.class);
-                    tickets.add(post);
+                    String ticketDate = post.getDate();
+                    String ticketTime = getYear(ticketDate) + buildTime(getMonth(ticketDate),getDay(ticketDate)) + post.getTime();
+                    String curTime = curYear + buildTime(curMonth,curDay) + sCurTime;
+                    if(ticketTime.compareTo(curTime) > 0){
+                        tickets.add(post);
+                    }
                 }
 
                 RecyclerView recyclerView = view.findViewById(R.id.rv_list);
@@ -80,7 +95,7 @@ public class ListFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError){
             }
         };
-        database.child("Ticket").addValueEventListener(mListener);
+        database.child("Ticket").addListenerForSingleValueEvent(mListener);
         
         // Pick Button
         btPick = view.findViewById(R.id.button_pick);
@@ -133,6 +148,43 @@ public class ListFragment extends Fragment {
             }
         };
         database.child("Ticket").addListenerForSingleValueEvent(mListener);
+    }
+
+    private int getYear(String sDate){
+        String[] ary = sDate.split(", ");
+        return Integer.parseInt(ary[2]);
+    }
+
+    private int getMonth(String sDate){
+        String[] ary = sDate.split(", ");
+        String[] date = ary[1].split(" ");
+        String[] months = new String[]{"January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"};
+        for(int i = 0; i < months.length; i++){
+            if(date[0].equals(months[i])){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int getDay(String sDate){
+        String[] ary = sDate.split(", ");
+        String[] date = ary[1].split(" ");
+        return Integer.parseInt(date[1]);
+    }
+
+    private String buildTime(int month, int day){
+        String res = "";
+        if(month < 10){
+            res += '0';
+        }
+        res += month;
+        if(day < 10){
+            res += '0';
+        }
+        res += day;
+        return res;
     }
 
 }

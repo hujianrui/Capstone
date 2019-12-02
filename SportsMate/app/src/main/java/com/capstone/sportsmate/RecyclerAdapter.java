@@ -26,6 +26,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
     public void resetSelectedView() {
+        this.selectedView.setBackgroundColor(Color.WHITE);
         this.selectedView = null;
     }
 

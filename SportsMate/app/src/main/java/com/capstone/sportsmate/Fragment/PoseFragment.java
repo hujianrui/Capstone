@@ -105,7 +105,7 @@ public class PoseFragment extends Fragment {
             public void onClick(View view){
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
-                int mouth = cal.get(Calendar.MONTH);
+                int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
                 datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -117,7 +117,7 @@ public class PoseFragment extends Fragment {
                         String sDate = DateFormat.getDateInstance(DateFormat.FULL).format(cal.getTime());
                         chooseDate.setText(sDate);
                     }
-                }, year, mouth, day);
+                }, year, month, day);
                 datePickerDialog.show();
             }
         });
@@ -165,14 +165,14 @@ public class PoseFragment extends Fragment {
 
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
-                int mouth = cal.get(Calendar.MONTH);
+                int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
                 int hour = cal.get(Calendar.HOUR_OF_DAY);
                 int minute = cal.get(Calendar.MINUTE);
                 int second = cal.get(Calendar.SECOND);
                 int millisecond = cal.get(Calendar.MILLISECOND);
 
-                sTid = "" + year + mouth + day + hour + minute + second + millisecond + userId;
+                sTid = "" + year + month + day + hour + minute + second + millisecond + userId;
                 sSports = rbSpots.getText().toString();
                 sZipCode = etZipCode.getText().toString();
                 sDate = chooseDate.getText().toString();
