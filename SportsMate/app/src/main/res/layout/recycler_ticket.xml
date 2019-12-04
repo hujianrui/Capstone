@@ -57,6 +57,20 @@
             android:layout_weight="1"
             android:text="Time" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zip Code: "
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_zipCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:text="Time" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -80,19 +94,10 @@
             android:layout_weight="1"
             android:text="Skill Level" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_pplnum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/imageView"
-        android:layout_below="@id/ll_skilllvl">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="People Number: "
+            android:text="Group Size: "
             android:inputType="text" />
 
         <TextView
@@ -101,7 +106,31 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_weight="1"
-            android:text="People Number" />
+            android:text="Number" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_below="@id/ll_skilllvl">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:text="Address" />
+
 
     </LinearLayout>
 

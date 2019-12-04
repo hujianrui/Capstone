@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.capstone.sportsmate.Activity.ProfileCreateActivity;
+import com.capstone.sportsmate.Activity.ProfileEditActivity;
 import com.capstone.sportsmate.Class.User;
 import com.capstone.sportsmate.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -77,7 +78,7 @@ public class ProfileFragment extends Fragment {
         btEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProfileEditFragment.class);
+                Intent intent = new Intent(getActivity(), ProfileEditActivity.class);
                 startActivity(intent);
             }
         });
