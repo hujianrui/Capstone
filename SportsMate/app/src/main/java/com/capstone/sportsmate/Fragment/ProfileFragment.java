@@ -77,7 +77,7 @@ public class ProfileFragment extends Fragment {
         btEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProfileCreateActivity.class);
+                Intent intent = new Intent(getActivity(), ProfileEditFragment.class);
                 startActivity(intent);
             }
         });

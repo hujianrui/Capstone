@@ -14,13 +14,30 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/button_pose"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:layout_gravity="center_horizontal"
-        android:text="Pose" />
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/button_pose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Pose" />
+
+        <Button
+            android:id="@+id/button_drop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Drop" />
+    </LinearLayout>
 
 </LinearLayout>

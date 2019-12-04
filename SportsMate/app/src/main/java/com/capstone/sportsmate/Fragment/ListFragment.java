@@ -44,10 +44,8 @@ public class ListFragment extends Fragment {
     private ArrayList<Ticket> tickets = new ArrayList<>();
     private RecyclerAdapter adapter;
     private Button btPick;
-    private String userId;
-    private String sTid; //key
-    private Ticket ticket;
-    private User user;
+    private String userId, sTid; //key
+
 
     public ListFragment() {
         // Required empty public constructor
@@ -80,7 +78,7 @@ public class ListFragment extends Fragment {
                     String ticketDate = post.getDate();
                     String ticketTime = getYear(ticketDate) + buildTime(getMonth(ticketDate),getDay(ticketDate)) + post.getTime();
                     String curTime = curYear + buildTime(curMonth,curDay) + sCurTime;
-                    if(ticketTime.compareTo(curTime) > 0){
+                    if(ticketTime.compareTo(curTime) > 0 && post.getUserID().size() != 0){
                         tickets.add(post);
                     }
                 }
@@ -104,10 +102,21 @@ public class ListFragment extends Fragment {
             public void onClick(View v) {
                 sTid = adapter.getSelectedTid();
                 if(sTid != null){
-                    updateUser();
-                    updateTicket();
-                    adapter.resetSelectedView();
-                    Toast.makeText(v.getContext(), "Joined the Game", Toast.LENGTH_LONG).show();
+                    int index = 0;
+                    while(index < tickets.size() && !tickets.get(index).getTid().equals(sTid)){
+                        index++;
+                    }
+                    if(tickets.get(index).getUserID().contains(userId)){
+                        adapter.resetSelectedView();
+                        Toast.makeText(v.getContext(), "You Already Joined the Game", Toast.LENGTH_LONG).show();
+                    }else{
+                        updateUser();
+                        updateTicket();
+                        adapter.resetSelectedView();
+                        tickets.get(index).getUserID().add(userId);
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(v.getContext(), "Joined the Game", Toast.LENGTH_LONG).show();
+                    }
                 }else{
                     Toast.makeText(v.getContext(), "Please Select a Ticket", Toast.LENGTH_LONG).show();
                 }
@@ -121,7 +130,7 @@ public class ListFragment extends Fragment {
         ValueEventListener mListener = new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                user = dataSnapshot.child(userId).getValue(User.class);
+                User user = dataSnapshot.child(userId).getValue(User.class);
                 user.addTicket(sTid);
                 database.child("User").child(userId).setValue(user);
             }
@@ -138,7 +147,7 @@ public class ListFragment extends Fragment {
         ValueEventListener mListener = new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ticket = dataSnapshot.child(sTid).getValue(Ticket.class);
+                Ticket ticket = dataSnapshot.child(sTid).getValue(Ticket.class);
                 ticket.addUser(userId);
                 database.child("Ticket").child(sTid).setValue(ticket);
             }

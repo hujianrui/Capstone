@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.capstone.sportsmate.Activity.PoseActivity;
 import com.capstone.sportsmate.Activity.ProfileCreateActivity;
@@ -26,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -34,11 +36,12 @@ import java.util.List;
  */
 public class TicketFragment extends Fragment {
 
-    private Button btPose;
+    private Button btPose, btDrop;
     private ArrayList<Ticket> tickets = new ArrayList<>();
     private DatabaseReference database;
+    private RecyclerAdapter adapter;
     private List<String> sTickets;
-    private String userId;
+    private String userId, sTid;
 
     public TicketFragment() {
         // Required empty public constructor
@@ -54,6 +57,14 @@ public class TicketFragment extends Fragment {
         database = FirebaseDatabase.getInstance().getReference();
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        Calendar cal = Calendar.getInstance();
+        final int curYear = cal.get(Calendar.YEAR);
+        final int curMonth = cal.get(Calendar.MONTH);
+        final int curDay = cal.get(Calendar.DAY_OF_MONTH);
+        int curHour = cal.get(Calendar.HOUR_OF_DAY);
+        int curMinute = cal.get(Calendar.MINUTE);
+        final String sCurTime = curHour + ":" + curMinute;
+
         //get user
         ValueEventListener mListener = new ValueEventListener(){
             @Override
@@ -63,11 +74,16 @@ public class TicketFragment extends Fragment {
                 for(int i = 0; i < sTickets.size(); i++){
                     String sTicket = sTickets.get(i);
                     Ticket ticket = dataSnapshot.child("Ticket").child(sTicket).getValue(Ticket.class);
-                    tickets.add(ticket);
+                    String ticketDate = ticket.getDate();
+                    String ticketTime = getYear(ticketDate) + buildTime(getMonth(ticketDate),getDay(ticketDate)) + ticket.getTime();
+                    String curTime = curYear + buildTime(curMonth,curDay) + sCurTime;
+                    if(ticketTime.compareTo(curTime) > 0){
+                        tickets.add(ticket);
+                    }
                 }
 
                 RecyclerView recyclerView = view.findViewById(R.id.rv_ticket);
-                RecyclerAdapter adapter = new RecyclerAdapter(tickets);
+                adapter = new RecyclerAdapter(tickets);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             }
@@ -76,7 +92,7 @@ public class TicketFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError){
             }
         };
-        database.addValueEventListener(mListener);
+        database.addListenerForSingleValueEvent(mListener);
 
         btPose = view.findViewById(R.id.button_pose);
         btPose.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +103,98 @@ public class TicketFragment extends Fragment {
             }
         });
 
+        btDrop = view.findViewById(R.id.button_drop);
+        btDrop.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                sTid = adapter.getSelectedTid();
+                if(sTid != null){
+                    updateUser();
+                    updateTicket();
+                    adapter.resetSelectedView();
+                    for(int i = 0; i < tickets.size(); i++){
+                        if(tickets.get(i).getTid().equals(sTid)){
+                            tickets.remove(i);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(v.getContext(), "Drop the Game", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(v.getContext(), "Please Select a Ticket", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         return view;
+    }
+
+    private int getYear(String sDate){
+        String[] ary = sDate.split(", ");
+        return Integer.parseInt(ary[2]);
+    }
+
+    private int getMonth(String sDate){
+        String[] ary = sDate.split(", ");
+        String[] date = ary[1].split(" ");
+        String[] months = new String[]{"January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"};
+        for(int i = 0; i < months.length; i++){
+            if(date[0].equals(months[i])){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int getDay(String sDate){
+        String[] ary = sDate.split(", ");
+        String[] date = ary[1].split(" ");
+        return Integer.parseInt(date[1]);
+    }
+
+    private String buildTime(int month, int day){
+        String res = "";
+        if(month < 10){
+            res += '0';
+        }
+        res += month;
+        if(day < 10){
+            res += '0';
+        }
+        res += day;
+        return res;
+    }
+
+    private void updateUser(){
+        ValueEventListener mListener = new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.child(userId).getValue(User.class);
+                user.removeTicket(sTid);
+                database.child("User").child(userId).setValue(user);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        };
+        database.child("User").addListenerForSingleValueEvent(mListener);
+    }
+
+    private void updateTicket(){
+        ValueEventListener mListener = new ValueEventListener(){
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Ticket ticket = dataSnapshot.child(sTid).getValue(Ticket.class);
+                ticket.removeUser(userId);
+                database.child("Ticket").child(sTid).setValue(ticket);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        };
+        database.child("Ticket").addListenerForSingleValueEvent(mListener);
     }
 
 }
