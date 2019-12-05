@@ -4,15 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    tools:context=".Fragment.PoseFragment">
+    tools:context=".Fragment.PoseFragment"
+    android:background="@drawable/background_dark">
 
     <RadioGroup
         android:id="@+id/rg_sports"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation='horizontal'
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -20,6 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Sports: "
             android:inputType="text" />
 
@@ -27,6 +29,7 @@
             android:id="@+id/badminton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
             android:text="Badminton" />
 
@@ -34,6 +37,7 @@
             android:id="@+id/basketball"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
             android:text="Basketball" />
 
@@ -41,6 +45,7 @@
             android:id="@+id/tennis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:layout_marginLeft="10dp"
             android:text="Tennis" />
     </RadioGroup>
@@ -51,19 +56,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rg_sports"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Skill Level: "
             android:inputType="text" />
 
         <Spinner
             android:id="@+id/spinner_skilllvl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
@@ -72,12 +81,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_skilllvl"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Zip Code: "
             android:inputType="text" />
 
@@ -85,6 +97,7 @@
             android:id="@+id/editText_zipCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="number"
             android:layout_weight="1"
             android:text="" />
@@ -96,12 +109,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_zipCode"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Address: "
             android:inputType="text" />
 
@@ -109,6 +125,7 @@
             android:id="@+id/editText_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="text"
             android:layout_weight="1"
             android:text="" />
@@ -120,12 +137,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_address"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Date: "
             android:inputType="text" />
 
@@ -133,6 +153,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="number"
             android:layout_weight="1"
             android:text="Choose a Date" />
@@ -143,6 +164,8 @@
         android:id="@+id/ll_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_below="@id/ll_date"
         android:layout_marginTop="32dp"
         android:orientation="horizontal">
@@ -150,6 +173,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Time: "
             android:inputType="text" />
 
@@ -157,6 +181,7 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="number"
             android:layout_weight="1"
             android:text="Choose a Time" />

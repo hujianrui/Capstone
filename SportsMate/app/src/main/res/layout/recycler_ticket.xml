@@ -18,11 +18,13 @@
         android:id="@+id/ll_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:layout_toRightOf="@id/imageView">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Date: "
             android:inputType="text" />
 
@@ -30,6 +32,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="number"
             android:layout_weight="1"
             android:text="Date" />
@@ -46,6 +49,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Time: "
             android:inputType="text" />
 
@@ -53,6 +57,7 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="number"
             android:layout_weight="1"
             android:text="Time" />
@@ -60,6 +65,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Zip Code: "
             android:inputType="text" />
 
@@ -67,6 +73,7 @@
             android:id="@+id/tv_zipCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="number"
             android:layout_weight="1"
             android:text="Time" />
@@ -83,6 +90,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Skill Level: "
             android:inputType="text" />
 
@@ -90,6 +98,7 @@
             android:id="@+id/tv_skilllvl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="text"
             android:layout_weight="1"
             android:text="Skill Level" />
@@ -97,6 +106,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Group Size: "
             android:inputType="text" />
 
@@ -104,6 +114,7 @@
             android:id="@+id/tv_pplnum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="number"
             android:layout_weight="1"
             android:text="Number" />
@@ -120,6 +131,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Address: "
             android:inputType="text" />
 
@@ -127,6 +139,7 @@
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:inputType="number"
             android:layout_weight="1"
             android:text="Address" />

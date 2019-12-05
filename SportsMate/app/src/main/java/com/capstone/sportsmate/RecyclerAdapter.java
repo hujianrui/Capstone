@@ -26,7 +26,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
     public void resetSelectedView() {
-        this.selectedView.setBackgroundColor(Color.WHITE);
+        this.selectedView.setBackgroundColor(Color.TRANSPARENT);
         this.selectedView = null;
     }
 
@@ -66,7 +66,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 if(selectedView != null && selectedView != v){
-                    selectedView.setBackgroundColor(Color.WHITE);
+                    selectedView.setBackgroundColor(Color.TRANSPARENT);
                     v.setBackgroundColor(Color.GRAY);
                     selectedTid = tickets.get(i).getTid();
                     selectedView = v;
@@ -77,7 +77,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     selectedView = v;
 //                    Toast.makeText(v.getContext(), "onClick: " + tickets.get(i).getTid(), Toast.LENGTH_LONG).show();
                 }else {
-                    v.setBackgroundColor(Color.WHITE);
+                    v.setBackgroundColor(Color.TRANSPARENT);
                     selectedView = null;
                     selectedTid = null;
 //                    Toast.makeText(v.getContext(), "Clear Info", Toast.LENGTH_LONG).show();
