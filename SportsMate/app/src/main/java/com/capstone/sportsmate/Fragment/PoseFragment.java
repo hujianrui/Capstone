@@ -44,7 +44,7 @@ import java.util.List;
  */
 public class PoseFragment extends Fragment {
 
-    private EditText etZipCode;
+    private EditText etZipCode, etAddress;
     private Spinner srSkillLvl;
     private RadioGroup rgSpots;
     private RadioButton rbSpots;
@@ -55,7 +55,7 @@ public class PoseFragment extends Fragment {
     private Ticket ticket = new Ticket();
     private String userId;
     private String sTid; //key
-    private String sSports, sLevel, sZipCode, sDate, sTime;
+    private String sSports, sLevel, sZipCode, sAddress, sDate, sTime;
     private DatabaseReference database;
     private List<String> tickets;
 
@@ -70,6 +70,7 @@ public class PoseFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_pose, container, false);
         etZipCode = view.findViewById(R.id.editText_zipCode);
+        etAddress = view.findViewById(R.id.editText_address);
 
         // Spots Radio Group
         rgSpots = (RadioGroup) view.findViewById(R.id.rg_sports);
@@ -175,6 +176,7 @@ public class PoseFragment extends Fragment {
                 sTid = "" + year + month + day + hour + minute + second + millisecond + userId;
                 sSports = rbSpots.getText().toString();
                 sZipCode = etZipCode.getText().toString();
+                sAddress = etAddress.getText().toString();
                 sDate = chooseDate.getText().toString();
                 sTime  = chooseTime.getText().toString();
                 updateTicket();
@@ -198,6 +200,10 @@ public class PoseFragment extends Fragment {
 
         if(!sZipCode.matches("")){
             ticket.setZipCode(sZipCode);
+        }
+
+        if(!sAddress.matches("")){
+            ticket.setAddress(sAddress);
         }
 
         if(!sDate.matches("")){

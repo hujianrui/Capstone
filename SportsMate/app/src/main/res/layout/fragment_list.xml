@@ -14,13 +14,42 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/button_pick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:layout_gravity="center_horizontal"
-        android:text="Pick" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zip Code: "
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editText_zipCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:text="" />
+
+        <Button
+            android:id="@+id/button_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="Search" />
+
+        <Button
+            android:id="@+id/button_pick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="Pick" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

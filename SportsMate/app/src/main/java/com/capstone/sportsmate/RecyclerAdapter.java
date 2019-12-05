@@ -49,6 +49,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.date.setText(tickets.get(i).getDate());
         viewHolder.time.setText(tickets.get(i).getTime());
         viewHolder.zipcode.setText(tickets.get(i).getZipCode());
+        viewHolder.address.setText(tickets.get(i).getAddress());
         viewHolder.skilllvl.setText(tickets.get(i).getLevel());
         int num = tickets.get(i).getUserID().size();
         viewHolder.pplnum.setText(String.valueOf(num));
@@ -95,7 +96,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView image;
-        TextView date, time, zipcode, skilllvl, pplnum;
+        TextView date, time, zipcode, address, skilllvl, pplnum;
         RelativeLayout ticket;
 
         public ViewHolder(@NonNull View itemView) {
@@ -105,6 +106,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             date = itemView.findViewById(R.id.tv_date);
             time = itemView.findViewById(R.id.tv_time);
             zipcode = itemView.findViewById(R.id.tv_zipCode);
+            address = itemView.findViewById(R.id.tv_address);
             skilllvl = itemView.findViewById(R.id.tv_skilllvl);
             pplnum = itemView.findViewById(R.id.tv_pplnum);
             ticket = itemView.findViewById(R.id.rl_ticket);

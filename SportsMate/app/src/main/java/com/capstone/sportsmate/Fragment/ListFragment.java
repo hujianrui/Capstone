@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.capstone.sportsmate.Activity.HomeActivity;
@@ -43,7 +45,7 @@ public class ListFragment extends Fragment {
     private DatabaseReference database;
     private ArrayList<Ticket> tickets = new ArrayList<>();
     private RecyclerAdapter adapter;
-    private Button btPick;
+    private Button btPick, btSearch;
     private String userId, sTid; //key
 
 
@@ -122,6 +124,36 @@ public class ListFragment extends Fragment {
                 }
             }
         });
+
+        // Search Button
+        btSearch = view.findViewById(R.id.button_search);
+        btSearch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ArrayList<Ticket> searchTickets = new ArrayList<>();
+                EditText etZipCode = view.findViewById(R.id.editText_zipCode);
+                String searchZipCode = etZipCode.getText().toString();
+                if(!searchZipCode.matches("")){
+                    for(int i = 0; i < tickets.size(); i++){
+                        if(tickets.get(i).getZipCode().equals(searchZipCode)){
+                            searchTickets.add(tickets.get(i));
+                        }
+                    }
+
+                    RecyclerView recyclerView = view.findViewById(R.id.rv_list);
+                    adapter = new RecyclerAdapter(searchTickets);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                }else{
+                    RecyclerView recyclerView = view.findViewById(R.id.rv_list);
+                    adapter = new RecyclerAdapter(tickets);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                }
+            }
+        });
+
         return view;
     }
 
