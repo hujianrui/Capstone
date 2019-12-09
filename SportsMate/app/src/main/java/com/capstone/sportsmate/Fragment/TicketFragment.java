@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.capstone.sportsmate.Activity.PoseActivity;
-import com.capstone.sportsmate.Activity.ProfileCreateActivity;
+import com.capstone.sportsmate.Activity.PostActivity;
 import com.capstone.sportsmate.Class.Ticket;
 import com.capstone.sportsmate.Class.User;
 import com.capstone.sportsmate.R;
@@ -98,7 +97,7 @@ public class TicketFragment extends Fragment {
         btPose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PoseActivity.class);
+                Intent intent = new Intent(getActivity(), PostActivity.class);
                 startActivity(intent);
             }
         });

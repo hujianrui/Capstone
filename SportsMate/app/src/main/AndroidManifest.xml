@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.ProfileEditActivity"></activity>
         <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.PoseActivity" />
+        <activity android:name=".Activity.PostActivity" />
         <activity android:name=".Activity.ProfileCreateActivity" />
         <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.RegisterActivity" />

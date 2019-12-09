@@ -26,7 +26,6 @@ import com.capstone.sportsmate.Class.Ticket;
 import com.capstone.sportsmate.Class.User;
 import com.capstone.sportsmate.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +33,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -42,7 +40,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PoseFragment extends Fragment {
+public class PostFragment extends Fragment {
 
     private EditText etZipCode, etAddress;
     private Spinner srSkillLvl;
@@ -59,7 +57,7 @@ public class PoseFragment extends Fragment {
     private DatabaseReference database;
     private List<String> tickets;
 
-    public PoseFragment() {
+    public PostFragment() {
         // Required empty public constructor
     }
 
@@ -68,7 +66,7 @@ public class PoseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_pose, container, false);
+        final View view = inflater.inflate(R.layout.fragment_post, container, false);
         etZipCode = view.findViewById(R.id.editText_zipCode);
         etAddress = view.findViewById(R.id.editText_address);
 
